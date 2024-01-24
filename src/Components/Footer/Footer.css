@@ -1,0 +1,68 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  margin-top: 20px; /* Add margin to create space above the container */
+}
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px; /* Adjusted margin for better spacing */
+}
+
+.footer-logo p {
+  color: #383838;
+  font-size: 32px; /* Adjust font size for responsiveness */
+  font-weight: 700;
+  margin: 0; /* Remove margin for cleaner look */
+}
+
+.footer-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  color: #252525;
+  font-size: 18px; /* Adjust font size for better readability */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+
+.footer-links li {
+  cursor: pointer;
+}
+
+.footer-social-icon {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-icons-container {
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 50%; /* Make the icon container circular */
+}
+
+.footer-copyright {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  color: #1a1a1a;
+  font-size: 16px; /* Adjust font size for better readability */
+}
+
+.footer-copyright hr {
+  width: 80%;
+  border: none;
+  border-radius: 5px;
+  height: 2px;
+  background: #c7c7c7;
+}
