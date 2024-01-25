@@ -1,16 +1,11 @@
 /* Banner */
 .shop-category {
-  margin: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
   background-color: #fff;
 }
 
 .shopcategory-banner {
   display: block;
-  margin: 30px auto;
-  max-width: 100%; /* Set a maximum width for the banner */
+  max-width: 100%;
   height: auto;
 }
 
@@ -41,10 +36,10 @@
 /* Products */
 .shopcategory-products {
   margin: 10px;
-  max-width: 50%;
+  max-width: 100%; /* Adjusted the max-width to make it responsive */
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 80px; /* Decreased gap to make the images closer */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px; /* Adjusted gap for better spacing */
 }
 
 /* Load More */

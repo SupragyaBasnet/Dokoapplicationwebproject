@@ -24,7 +24,7 @@ let new_collections = [
   },
   {
     id: 14,
-    name: "White down jacket for men",
+    name: "White  down jacket with a hint of blue and red for men",
     image: p3_img,
     new_price: 60.0,
     old_price: 100.5,
@@ -52,14 +52,14 @@ let new_collections = [
   },
   {
     id: 17,
-    name: "Men Denim Jacket for Men",
+    name: "Men blue Denim Jacket for Men",
     image: p7_img,
     new_price: 60.0,
     old_price: 100.5,
   },
   {
     id: 28,
-    name: "Green diano logo sweatshirt for kids",
+    name: "Green dinosaur logo sweatshirt for kids",
     image: p8_img,
     new_price: 100.0,
     old_price: 150.0,
