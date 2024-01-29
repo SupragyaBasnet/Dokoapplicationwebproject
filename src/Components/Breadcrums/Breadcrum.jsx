@@ -1,6 +1,8 @@
 import React from "react";
+import { Breadcrumb } from "react-bootstrap";
 import "./Breadcrum.css";
 import arrow_icon from "../Assets/breadcrum_arrow.png";
+import Container from "react-bootstrap/Container";
 
 const Breadcrum = (props) => {
   const { product } = props;
@@ -12,13 +14,14 @@ const Breadcrum = (props) => {
   }
 
   return (
-    <div className="breadcrum">
-      HOME <img src={arrow_icon} alt="" />
-      SHOP <img src={arrow_icon} alt="" />
-      {product.category}
-      <img src={arrow_icon} alt="" />
-      {product.name}
-    </div>
+    <Container>
+      <Breadcrumb className="breadcrum-container my-5">
+        <Breadcrumb.Item href="/">HOME</Breadcrumb.Item>
+        <Breadcrumb.Item href="/shop">SHOP</Breadcrumb.Item>
+        <Breadcrumb.Item active>{product.category}</Breadcrumb.Item>
+        <Breadcrumb.Item active>{product.name}</Breadcrumb.Item>
+      </Breadcrumb>
+    </Container>
   );
 };
 
