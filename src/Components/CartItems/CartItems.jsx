@@ -9,6 +9,11 @@ const CartItems = () => {
   const { getTotalCartAmount, all_product, cartItems, removeFromCart } =
     useContext(ShopContext);
 
+  const shippingFee = 5; // Set your shipping fee here
+
+  const subtotal = getTotalCartAmount();
+  const total = subtotal + shippingFee;
+
   return (
     <Container className="py-5">
       <Table striped bordered hover>
@@ -88,7 +93,7 @@ const CartItems = () => {
             </td>
             <td></td>
             <td></td>
-            <td>${getTotalCartAmount()}</td>
+            <td>${subtotal}</td>
             <td></td>
           </tr>
           <tr>
@@ -97,7 +102,7 @@ const CartItems = () => {
             <td>Shipping Fee</td>
             <td></td>
             <td></td>
-            <td>Free</td>
+            <td>${shippingFee}</td>
             <td></td>
           </tr>
           <tr>
@@ -109,7 +114,7 @@ const CartItems = () => {
             <td></td>
             <td></td>
             <td>
-              <h3>${getTotalCartAmount()}</h3>
+              <h3>${total}</h3>
             </td>
             <td></td>
           </tr>

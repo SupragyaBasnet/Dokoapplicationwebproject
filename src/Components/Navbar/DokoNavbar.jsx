@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -6,12 +6,15 @@ import { LinkContainer } from "react-router-bootstrap";
 import logo from "../Assets/logo.png";
 import cart_icon from "../Assets/cart_icon.png";
 import { Outlet } from "react-router-dom";
-import { useContext } from "react";
 import { ShopContext } from "../../Context/ShopContext";
 import "./DokoNavbar.css";
+
 const DokoNavbar = () => {
   const [menu, setMenu] = useState("shop");
   const { getTotalCartItems } = useContext(ShopContext);
+
+  const totalCartItems = getTotalCartItems();
+
   return (
     <>
       <Navbar
@@ -54,7 +57,14 @@ const DokoNavbar = () => {
                 <Nav.Link>Login</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/cart">
-                <img src={cart_icon} alt="" width="30" />
+                <div className="cart-icon-container">
+                  <div className="cart-badge-container">
+                    <img src={cart_icon} alt="" width="30" height="30" />
+                    {totalCartItems > 0 && (
+                      <span className="cart-badge">{totalCartItems}</span>
+                    )}
+                  </div>
+                </div>
               </LinkContainer>
             </Nav>
           </Navbar.Collapse>
