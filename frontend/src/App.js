@@ -28,15 +28,21 @@ function App() {
             <Route path="shop" element={<Shop />} />
             <Route
               path="men"
-              element={<ShopCategory banner={men_banner} category="men" />}
+              element={
+                <ShopCategory banner={men_banner} category="men" type="1" />
+              }
             />
             <Route
               path="women"
-              element={<ShopCategory banner={women_banner} category="women" />}
+              element={
+                <ShopCategory banner={women_banner} category="women" type="2" />
+              }
             />
             <Route
               path="kids"
-              element={<ShopCategory banner={kid_banner} category="kid" />}
+              element={
+                <ShopCategory banner={kid_banner} category="kid" type="3" />
+              }
             />
             <Route path="product" element={<Product />}>
               <Route path=":productId" element={<Product />} />
@@ -49,6 +55,7 @@ function App() {
           <Route path="/admin" element={<AdminNavBar />}>
             <Route index element={<ListProduct />} />
             <Route path="addproduct" element={<AddProduct />} />
+            <Route path="editproduct" element={<AddProduct />} />
             <Route path="listproduct" element={<ListProduct />} />
             <Route path="vieworder" element={<ViewOrder />} />
           </Route>

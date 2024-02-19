@@ -4,10 +4,12 @@ import "./ProductDisplay.css";
 import start_icon from "../Assets/star_icon.png";
 import start_dull_icon from "../Assets/star_dull_icon.png";
 import { ShopContext } from "../../Context/ShopContext";
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
 
 const ProductDisplay = (props) => {
   const { product } = props;
-  const { addToCart } = useContext(ShopContext);
+  const { addToCart, cartItems } = useContext(ShopContext);
 
   return (
     <Container className="productdisplay w-100 ">
@@ -33,10 +35,10 @@ const ProductDisplay = (props) => {
           </div>
           <div className="productdisplay-right-prices">
             <div className="productdisplay-right-price-old">
-              ${product.old_price}
+              ${product.price}
             </div>
             <div className="productdisplay-right-price-new">
-              ${product.new_price}
+              ${product.discounted_price}
             </div>
           </div>
 
@@ -46,28 +48,40 @@ const ProductDisplay = (props) => {
           <div className="productdisplay-right-size">
             <h1>Select Size</h1>
             <div className="productdisplay-right-size">
-              <div>S</div>
-              <div>M</div>
-              <div>L</div>
-              <div>XL</div>
-              <div>XXL</div>
+              {product.sizes.split(",").map((item, id) => {
+                return <div>{item}</div>;
+              })}
             </div>
           </div>
           <Button
             onClick={() => {
-              addToCart(product.id);
+              addToCart(product);
             }}
           >
             ADD TO CART
           </Button>
           <p className="productsiaplay-right-category">
-            <span>Category:</span>Women, T-shirt, Crop Top
+            <span>Category:</span>
+            {product.category}
           </p>
           <p className="productsiaplay-right-category">
-            <span>Tags:</span>Modern, Latest
+            <span>Tags:</span>
+            {product.tags}
           </p>
         </Col>
       </Row>
+      <Tabs
+        defaultActiveKey="description"
+        id="uncontrolled-tab-example"
+        className="my-4"
+      >
+        <Tab eventKey="description" title="Description">
+          <p>{product.description}</p>
+        </Tab>
+        <Tab eventKey="reviews" title="Reviews">
+          Tab content for Profile
+        </Tab>
+      </Tabs>
     </Container>
   );
 };

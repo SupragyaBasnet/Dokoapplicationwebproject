@@ -1,23 +1,11 @@
 import React, { useState } from "react";
 import { Table, Container } from "react-bootstrap";
 import "./ViewOrder.css"; // Make sure to include your CSS file
+import axios from "axios";
+import { useEffect } from "react";
 
 const ViewOrder = () => {
-  const [orders, setOrders] = useState([
-    {
-      id: 1,
-      product: "Product 1",
-      quantity: 2,
-      price: 20,
-    },
-    {
-      id: 2,
-      product: "Product 2",
-      quantity: 1,
-      price: 15,
-    },
-    // Add more orders as needed
-  ]);
+  const [orders, setOrders] = useState([]);
 
   const calculateTotal = () => {
     return orders.reduce(
@@ -26,6 +14,19 @@ const ViewOrder = () => {
     );
   };
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/items")
+      .then((response) => {
+        if (response.status == 200 && response.data.httpStatus == "OK") {
+          setOrders(response.data.dataArray);
+        }
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   return (
     <Container>
       <div className="view_order mt-4">

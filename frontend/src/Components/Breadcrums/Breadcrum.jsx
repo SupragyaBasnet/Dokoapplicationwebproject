@@ -6,6 +6,7 @@ import Container from "react-bootstrap/Container";
 
 const Breadcrum = (props) => {
   const { product } = props;
+  const types = ["None", "MEN", "WOMEN", "KIDs"];
 
   // Check if product is defined and has the expected properties
   if (!product || !product.category || !product.name) {
@@ -18,7 +19,7 @@ const Breadcrum = (props) => {
       <Breadcrumb className="breadcrum-container my-5">
         <Breadcrumb.Item href="/">HOME</Breadcrumb.Item>
         <Breadcrumb.Item href="/shop">SHOP</Breadcrumb.Item>
-        <Breadcrumb.Item active>{product.category}</Breadcrumb.Item>
+        <Breadcrumb.Item active>{types[product.type]}</Breadcrumb.Item>
         <Breadcrumb.Item active>{product.name}</Breadcrumb.Item>
       </Breadcrumb>
     </Container>

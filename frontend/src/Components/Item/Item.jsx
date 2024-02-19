@@ -2,19 +2,27 @@ import React from "react";
 import "./Item.css";
 import { Link } from "react-router-dom";
 import Image from "react-bootstrap/Image";
+import { useNavigate } from "react-router-dom";
 
 export const Item = (props) => {
+  const navigate = useNavigate();
+
+  const showProductDetail = () => {
+    navigate(`/product/${props.id}`, {
+      state: { product: props.product },
+    });
+  };
+
+  console.log("Item", props.product);
   return (
-    <div className="item my-3">
-      <Link to={`/product/${props.id}`}>
-        <Image
-          onClick={window.scrollTo(0, 0)}
-          src={props.image}
-          alt=""
-          fluid
-          rounded
-        ></Image>
-      </Link>
+    <div className="item my-3" onClick={showProductDetail}>
+      <Image
+        // onClick={window.scrollTo(0, 0)}
+        src={props.image}
+        alt=""
+        fluid
+        rounded
+      ></Image>
       <p>{props.name}</p>
       <div className="item-prices">
         <div className="item-price-new"> ${props.new_price}</div>

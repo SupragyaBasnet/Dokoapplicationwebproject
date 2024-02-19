@@ -9,11 +9,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const root = createRoot(document.getElementById("root")); // Use createRoot instead of ReactDOM.createRoot
 root.render(
-  <React.StrictMode>
-    <ShopContextProvider>
-      <App />
-    </ShopContextProvider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <ShopContextProvider>
+    <App />
+  </ShopContextProvider>
+  // </React.StrictMode>
 );
 
 reportWebVitals();

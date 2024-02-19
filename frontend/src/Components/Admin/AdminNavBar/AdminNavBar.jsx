@@ -9,6 +9,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import logo from "../../Assets/logo.png";
 
 const AdminNavBar = () => {
+  console.log("Admin Navbar Mounted");
   return (
     <>
       <Navbar bg="light" expand="lg">
