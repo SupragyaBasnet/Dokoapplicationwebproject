@@ -40,18 +40,19 @@ const ShopContextProvider = (props) => {
     }));
   };
 
-  const removeFromCart = (product) => {
-    setCartItems((prev) => ({
-      ...prev,
-      [product.id]: { count: prev[product.id]["count"] - 1, product: product },
-    }));
-    // setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+  const removeFromCart = (productId) => {
+    console.log(cartItems[productId]);
+    let newItems = {};
+    Object.keys(cartItems).filter(id=> id!=productId).map(id=>newItems[id]=cartItems[id]);
+    setCartItems(newItems);
   };
 
   const getTotalCartAmount = () => {
     let totalAmount = 0;
+    // Object.keys(cartItems).map(key=>cartItems[key][])
     for (const item in cartItems) {
-      totalAmount += cartItems[item]["count"] * cartItems[item]["product"];
+      totalAmount += cartItems[item]["count"] * cartItems[item]["product"]["discounted_price"];
+      console.log(totalAmount);
       // if (cartItems[item] > 0) {
       //   let itemInfo = all_product.find(
       //     (product) => product.id === Number(item)

@@ -6,13 +6,19 @@ import reportWebVitals from "./reportWebVitals";
 import ShopContextProvider from "./Context/ShopContext"; // Import ShopContextProvider
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import { AuthProvider } from "./Context/AuthProvider";
+import { BrowserRouter } from "react-router-dom";
 
 const root = createRoot(document.getElementById("root")); // Use createRoot instead of ReactDOM.createRoot
 root.render(
   // <React.StrictMode>
-  <ShopContextProvider>
-    <App />
-  </ShopContextProvider>
+  <BrowserRouter>
+    <AuthProvider>
+      <ShopContextProvider>
+        <App />
+      </ShopContextProvider>
+    </AuthProvider>
+  </BrowserRouter>
   // </React.StrictMode>
 );
 

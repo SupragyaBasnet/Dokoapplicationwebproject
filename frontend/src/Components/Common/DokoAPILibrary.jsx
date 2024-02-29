@@ -25,7 +25,7 @@ export function fetchAPIProducts(page = 0, limit = 10, type = undefined) {
 }
 
 export function DeleteAPIItem(item_id) {
-  return axios.delete(`http://localhost:8080/items?id=${item_id}`);
+  return axios.delete(`http://localhost:8080/admin/items/${item_id}`);
 }
 
 export default fetchAPIProducts;

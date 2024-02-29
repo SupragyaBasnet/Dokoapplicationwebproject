@@ -9,12 +9,14 @@ import { Outlet } from "react-router-dom";
 import { ShopContext } from "../../Context/ShopContext";
 import "./DokoNavbar.css";
 import Footer from "../Footer/Footer";
+import useAuth from "../../Hooks/useAuth";
 
 const DokoNavbar = () => {
   const [menu, setMenu] = useState("shop");
   const { getTotalCartItems } = useContext(ShopContext);
 
   const totalCartItems = getTotalCartItems();
+  const {auth} = useAuth();
 
   return (
     <>
@@ -54,9 +56,13 @@ const DokoNavbar = () => {
               </LinkContainer>
             </Nav>
             <Nav>
-              <LinkContainer to="/login">
-                <Nav.Link>Login</Nav.Link>
-              </LinkContainer>
+              {
+                auth?.user
+                ?(<div style={{marginRight: 10+'px' }}>Welcome, {auth?.user}</div>)
+                :(<LinkContainer to="/login">
+                    <Nav.Link>Login</Nav.Link>
+                  </LinkContainer>)
+              }
               <LinkContainer to="/cart">
                 <div className="cart-icon-container">
                   <div className="cart-badge-container">
