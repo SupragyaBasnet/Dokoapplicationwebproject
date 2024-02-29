@@ -1,6 +1,6 @@
 package com.dsa.springrestauth.entity;
 
-import  com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,6 +23,8 @@ public class UserEntity {
     private String password;
     private String role;
     private String extraInfo;
+    private String username;
+    private String phoneNumber;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     @JsonIgnore

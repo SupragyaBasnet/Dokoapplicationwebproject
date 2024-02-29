@@ -30,9 +30,9 @@ public class SpringrestauthApplication {
     CommandLineRunner Initialize(StorageService storageService) {
         return (args) -> {
             UserEntity user = new UserEntity();
-            user.setEmail("user@test.com");
+            user.setEmail("next@test.com");
             user.setPassword(passwordEncoder.encode("test"));
-            user.setRole("ROLE_USER");// ROLE_ADMIN, ROLE_USER
+            user.setRole("ROLE_USER");
             user.setExtraInfo("This is an admin user");
 //            userRepository.save(user);
 

@@ -3,15 +3,50 @@ import "./CartItems.css";
 import { ShopContext } from "../../Context/ShopContext";
 import { Button, Image, Container, Row, Col } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
+import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
+import { format } from "date-fns";
 
 const Checkout = () => {
   const { getTotalCartAmount, cartItems } = useContext(ShopContext);
+  const axiosPrivate = useAxiosPrivate();
 
   const shippingFee = 5; // Set your shipping fee here
 
   const subtotal = getTotalCartAmount();
   const total = subtotal + shippingFee;
   let index = 1;
+
+  const submitOrder = () => {
+    console.log("submit order");
+    let order = {
+      shipping: shippingFee,
+      deliveryDate: format(
+        new Date(new Date().setDate(new Date().getDate() + 2)),
+        "yyyy-MM-dd"
+      ),
+      address: "dhumbarahi, Kathmandu",
+      orderItems: [],
+    };
+
+    Object.keys(cartItems).map((id) => {
+      let item = cartItems[id]["product"];
+      let orderItem = {
+        quantity: cartItems[id]["count"],
+        name: item["name"],
+        price: item["discounted_price"],
+        imageName: item["imageName"],
+      };
+      order["orderItems"].push(orderItem);
+    });
+
+    axiosPrivate
+      .post("user/orders", {
+        ...order,
+      })
+      .then((response) => {
+        console.log(response);
+      });
+  };
 
   console.log(cartItems);
   return (
@@ -28,38 +63,34 @@ const Checkout = () => {
           </tr>
         </thead>
         <tbody>
-          {
-            Object.keys(cartItems).map(key=>{
-              const item = cartItems[key]['product'];
-              const count = cartItems[key]['count'];
-              console.log(count, item);
-              return (
-                <tr key={item.id}>
-                  <td>{index++}</td>
-                  <td>
-                    {" "}
-                    <Image
-                      src={item.image}
-                      alt=""
-                      className="custom-carticon-product-icon"
-                    />
-                  </td>
-                  <td>
-                    <p>{item.name}</p>
-                  </td>
-                  <td>
-                    <p>${item.discounted_price}</p>
-                  </td>
-                  <td>
-                    {count}
-                  </td>
-                  <td>
-                    <p>${item.discounted_price * count}</p>
-                  </td>
-                </tr>
-              )
-            })
-          }
+          {Object.keys(cartItems).map((key) => {
+            const item = cartItems[key]["product"];
+            const count = cartItems[key]["count"];
+            console.log(count, item);
+            return (
+              <tr key={item.id}>
+                <td>{index++}</td>
+                <td>
+                  {" "}
+                  <Image
+                    src={item.image}
+                    alt=""
+                    className="custom-carticon-product-icon"
+                  />
+                </td>
+                <td>
+                  <p>{item.name}</p>
+                </td>
+                <td>
+                  <p>${item.discounted_price}</p>
+                </td>
+                <td>{count}</td>
+                <td>
+                  <p>${item.discounted_price * count}</p>
+                </td>
+              </tr>
+            );
+          })}
           <tr>
             <td></td>
             <td></td>
@@ -106,7 +137,9 @@ const Checkout = () => {
       <Row className="justify-content-end">
         <Col lg={4}>
           <div className="custom-cartitems-total">
-            <Button variant="primary">CONFIRM ORDER</Button>
+            <Button variant="primary" onClick={() => submitOrder()}>
+              CONFIRM ORDER
+            </Button>
           </div>
         </Col>
       </Row>

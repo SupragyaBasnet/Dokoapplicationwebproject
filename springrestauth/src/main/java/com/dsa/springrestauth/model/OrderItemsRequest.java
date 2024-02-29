@@ -6,6 +6,7 @@ import lombok.Getter;
 @Getter
 @Builder
 public class OrderItemsRequest {
+    private Integer id;
     private String name;
     private float price;
     private String imageName;

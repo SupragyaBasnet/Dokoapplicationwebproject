@@ -24,6 +24,8 @@ public class OrderEntity implements ResponseObjectsInterface {
 
     private String address;
 
+    private boolean complete;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;

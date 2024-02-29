@@ -1,6 +1,7 @@
 package com.dsa.springrestauth.service;
 
 import com.dsa.springrestauth.model.LoginResponse;
+import com.dsa.springrestauth.model.RegisterRequest;
 import com.dsa.springrestauth.security.JwtIssuer;
 import com.dsa.springrestauth.security.UserPrincipal;
 import lombok.RequiredArgsConstructor;
@@ -30,16 +31,20 @@ public class AuthService {
                 .map(GrantedAuthority::getAuthority)
                 .toList();
 
-
+        SecurityContextHolder.getContext().setAuthentication(null);
         var token = jwtIssuer.issue(principal.getUserId(), principal.getEmail(), roles);
         return LoginResponse.builder()
                 .accessToken(token)
                 .build();
     }
 
-    public LoginResponse attemptRegistration(String username, String password){
-        if(userService.createUser(username, password)) return attemptLogin(username, password);
+    public LoginResponse attemptRegistration(RegisterRequest request){
+        if(userService.createUser(request)) return attemptLogin(request.getEmail(), request.getPassword());
 
         return LoginResponse.builder().build();
+    }
+
+    public void attemptLogout(String token) {
+        SecurityContextHolder.getContext().setAuthentication(null);
     }
 }

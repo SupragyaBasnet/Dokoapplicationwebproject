@@ -1,12 +1,14 @@
-
 import React, { useState } from "react";
 import { Table, Container, Button } from "react-bootstrap";
 import "./ViewOrder.css"; // Make sure to include your CSS file
-import axios from "axios";
+import useAxiosPrivate from "../../../Hooks/useAxiosPrivate";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ViewOrder = () => {
   const [orders, setOrders] = useState([]);
+  const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
 
   const calculateTotal = () => {
     return orders.reduce(
@@ -16,22 +18,31 @@ const ViewOrder = () => {
   };
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/items")
+    axiosPrivate
+      .get("admin/orders")
       .then((response) => {
         if (response.status === 200 && response.data.httpStatus === "OK") {
           setOrders(response.data.dataArray);
         }
-        console.log(response.data);
+        console.log(response.data.dataArray);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
-  const handleComplete = (orderId) => {
+  const viewDetails = (orderId) => {
     // Implement logic to mark order as completed
     console.log("Order Completed:", orderId);
+    navigate("/admin/vieworderdetails", {
+      state: { order: orders.find((order) => order.id === orderId) },
+    });
+  };
+
+  const getTotal = (items) => {
+    let sum = 0;
+    items.map((item) => (sum += item.price * item.quantity));
+    return sum;
   };
 
   return (
@@ -41,31 +52,33 @@ const ViewOrder = () => {
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Product</th>
-              <th>Quantity</th>
-              <th>Date</th>
+              <th>S.N.</th>
+              <th>UserName</th>
               <th>Price</th>
-              <th>Total</th>
+              <th>Shipping</th>
+              <th>Address</th>
+              <th>DeliveryDate</th>
+              <th>Status</th>
               <th>Action</th> {/* New column header */}
             </tr>
           </thead>
           <tbody>
-            {orders.map((order) => (
+            {orders.map((order, index) => (
               <tr key={order.id}>
-                <td>{order.id}</td>
-                <td>{order.product}</td>
-                <td>{order.quantity}</td>
-                <td>{order.date}</td>
-                <td>${order.price}</td>
-                <td>${order.quantity * order.price}</td>
+                <td>{index + 1}</td>
+                <td>{order.user.email}</td>
+                <td>${getTotal(order.orderItems)}</td>
+                <td>{order.shipping}</td>
+                <td>{order.address}</td>
+                <td>{order.deliveryDate}</td>
+                <td>{order.complete ? "Delivered" : "Pending"}</td>
                 <td>
                   <Button
-                    onClick={() => handleComplete(order.id)}
+                    onClick={() => viewDetails(order.id)}
                     variant="success"
                   >
-                    Order Placed
-                  </Button>{" "}
+                    View Details
+                  </Button>
                   {/* Button to mark order as Done */}
                 </td>
               </tr>

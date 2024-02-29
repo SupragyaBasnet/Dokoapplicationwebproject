@@ -52,13 +52,15 @@ public class WebSecurityConfig {
                 .securityMatcher("/**")
                 .authorizeHttpRequests(registry-> registry
                         .requestMatchers("/").permitAll()
-                        .requestMatchers("/auth/login").permitAll()
+                        .requestMatchers("/image").permitAll()
+                        .requestMatchers("/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/items/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/user/orders").hasRole("USER")
 //                        .requestMatchers("/admin/items/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
-                );
+                )
+                .logout(logout -> logout.logoutUrl("/auth/logout"));
 
         return http.build();
     }

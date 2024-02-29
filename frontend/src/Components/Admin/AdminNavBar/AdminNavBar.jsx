@@ -1,20 +1,22 @@
-
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import Button from "react-bootstrap/Button";
 import logo from "../../Assets/logo.png";
+import useAuth from "../../../Hooks/useAuth";
 
 const AdminNavBar = () => {
   console.log("Admin Navbar Mounted");
+  const { auth, setAuth } = useAuth();
+  const navigate = useNavigate();
 
   const logout = () => {
-    console.log("Logging out...");
-    // Implement logout functionality here
+    setAuth(undefined);
+    navigate("/");
   };
 
   return (

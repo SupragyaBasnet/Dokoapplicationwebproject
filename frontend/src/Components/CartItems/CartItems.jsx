@@ -7,7 +7,8 @@ import cross_icon from "../Assets/cross_icon.png";
 import { useNavigate } from "react-router-dom";
 
 const CartItems = () => {
-  const { getTotalCartAmount, cartItems, removeFromCart } = useContext(ShopContext);
+  const { getTotalCartAmount, cartItems, removeFromCart } =
+    useContext(ShopContext);
   const navigate = useNavigate();
 
   const shippingFee = 5; // Set your shipping fee here
@@ -16,9 +17,9 @@ const CartItems = () => {
   const total = subtotal + shippingFee;
   let index = 1;
 
-  const proceedToCheckout = ()=>{
-    navigate('/checkout');
-  }
+  const proceedToCheckout = () => {
+    navigate("/checkout");
+  };
 
   console.log(cartItems);
   return (
@@ -36,52 +37,51 @@ const CartItems = () => {
           </tr>
         </thead>
         <tbody>
-          {
-            Object.keys(cartItems).map(key=>{
-              const item = cartItems[key]['product'];
-              const count = cartItems[key]['count'];
-              console.log(count, item);
-              return (
-                <tr key={item.id}>
-                  <td>{index++}</td>
-                  <td>
-                    {" "}
-                    <Image
-                      src={item.image}
-                      alt=""
-                      className="custom-carticon-product-icon"
-                    />
-                  </td>
-                  <td>
-                    <p>{item.name}</p>
-                  </td>
-                  <td>
-                    <p>${item.discounted_price}</p>
-                  </td>
-                  <td>
-                    <Button
-                      variant="outline-dark"
-                      className="custom-cartitems-quantity">
-                      {count}
-                    </Button>
-                  </td>
-                  <td>
-                    <p>${item.discounted_price * count}</p>
-                  </td>
-                  <td>
-                    <img
-                      className="custom-cartitems-remove-icon"
-                      src={cross_icon}
-                      onClick={() => {
-                        removeFromCart(item.id);
-                      }}
-                      alt=""
-                    />
-                  </td>
-                </tr>
-              )
-            })
-          }
+          {Object.keys(cartItems).map((key) => {
+            const item = cartItems[key]["product"];
+            const count = cartItems[key]["count"];
+            console.log(count, item);
+            return (
+              <tr key={item.id}>
+                <td>{index++}</td>
+                <td>
+                  {" "}
+                  <Image
+                    src={item.image}
+                    alt=""
+                    className="custom-carticon-product-icon"
+                  />
+                </td>
+                <td>
+                  <p>{item.name}</p>
+                </td>
+                <td>
+                  <p>${item.discounted_price}</p>
+                </td>
+                <td>
+                  <Button
+                    variant="outline-dark"
+                    className="custom-cartitems-quantity"
+                  >
+                    {count}
+                  </Button>
+                </td>
+                <td>
+                  <p>${item.discounted_price * count}</p>
+                </td>
+                <td>
+                  <img
+                    className="custom-cartitems-remove-icon"
+                    src={cross_icon}
+                    onClick={() => {
+                      removeFromCart(item.id);
+                    }}
+                    alt=""
+                  />
+                </td>
+              </tr>
+            );
+          })}
           <tr>
             <td></td>
             <td></td>
@@ -132,7 +132,9 @@ const CartItems = () => {
       <Row className="justify-content-end">
         <Col lg={4}>
           <div className="custom-cartitems-total">
-            <Button variant="primary" onClick={()=> proceedToCheckout()}>PROCEED TO CHECKOUT</Button>
+            <Button variant="primary" onClick={() => proceedToCheckout()}>
+              PROCEED TO CHECKOUT
+            </Button>
           </div>
         </Col>
       </Row>

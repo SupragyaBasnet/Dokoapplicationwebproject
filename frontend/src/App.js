@@ -19,39 +19,52 @@ import ListProduct from "./Components/Admin/ListProduct/ListProduct";
 import ViewOrder from "./Components/Admin/ViewOrder/ViewOrder";
 import RequireAuth from "./Components/RequireAuth";
 import Checkout from "./Components/CartItems/Checkout";
+import ViewOrderDetails from "./Components/Admin/ViewOrder/ViewOrderDetails";
 
 function App() {
   return (
-        <Routes>
-          <Route path="/" element={<DokoNavbar />}>
-            <Route index element={<Shop />} />
-            <Route path="shop" element={<Shop />} />
-            <Route path="men" element={<ShopCategory banner={men_banner} category="men" type="1" />} />
-            <Route path="women" element={ <ShopCategory banner={women_banner} category="women" type="2" /> } />
-            <Route path="kids" element={ <ShopCategory banner={kid_banner} category="kid" type="3" />} />
-            <Route path="product" element={<Product />}>
-              <Route path=":productId" element={<Product />} />
-            </Route>
-            {/* only the cart checkout needs to have user login  */}
-            <Route path="cart" element={<Cart />} />
-            <Route element={<RequireAuth allowedRoles={['ROLE_USER']}/>} >
-              <Route path="checkout" element={<Checkout/>} />
-            </Route>
-            <Route path="signup" element={<LoginSignup />} />
-            <Route path="login" element={<Login />} />
-            <Route path="forgot-password" element={<ForgotPassword />} />
-          </Route>
-          <Route element={<RequireAuth allowedRoles={['ROLE_ADMIN']}/>} >
-            {/* Routes accessible to admin only */}
-            <Route path="/admin" element={<AdminNavBar />}>
-              <Route index element={<ListProduct />} />
-              <Route path="addproduct" element={<AddProduct />} />
-              <Route path="editproduct" element={<AddProduct />} />
-              <Route path="listproduct" element={<ListProduct />} />
-              <Route path="vieworder" element={<ViewOrder />} />
-            </Route>
-          </Route>
-        </Routes>
+    <Routes>
+      <Route path="/" element={<DokoNavbar />}>
+        <Route index element={<Shop />} />
+        <Route path="shop" element={<Shop />} />
+        <Route
+          path="men"
+          element={<ShopCategory banner={men_banner} category="men" type="1" />}
+        />
+        <Route
+          path="women"
+          element={
+            <ShopCategory banner={women_banner} category="women" type="2" />
+          }
+        />
+        <Route
+          path="kids"
+          element={<ShopCategory banner={kid_banner} category="kid" type="3" />}
+        />
+        <Route path="product" element={<Product />}>
+          <Route path=":productId" element={<Product />} />
+        </Route>
+        {/* only the cart checkout needs to have user login  */}
+        <Route path="cart" element={<Cart />} />
+        <Route element={<RequireAuth allowedRoles={["ROLE_USER"]} />}>
+          <Route path="checkout" element={<Checkout />} />
+        </Route>
+        <Route path="signup" element={<LoginSignup />} />
+        <Route path="login" element={<Login />} />
+        <Route path="forgot-password" element={<ForgotPassword />} />
+      </Route>
+      <Route element={<RequireAuth allowedRoles={["ROLE_ADMIN"]} />}>
+        {/* Routes accessible to admin only */}
+        <Route path="/admin" element={<AdminNavBar />}>
+          <Route index element={<ListProduct />} />
+          <Route path="addproduct" element={<AddProduct />} />
+          <Route path="editproduct" element={<AddProduct />} />
+          <Route path="listproduct" element={<ListProduct />} />
+          <Route path="vieworder" element={<ViewOrder />} />
+          <Route path="vieworderdetails" element={<ViewOrderDetails />} />
+        </Route>
+      </Route>
+    </Routes>
   );
 }
 

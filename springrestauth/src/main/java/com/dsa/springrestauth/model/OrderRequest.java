@@ -12,6 +12,7 @@ public class OrderRequest {
     private float shipping;
     private Date deliveryDate;
     private String address;
+    private boolean complete;
 
     private List<OrderItemsRequest> orderItems;
 }

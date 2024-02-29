@@ -1,4 +1,3 @@
-// Login.js
 import React, { useRef, useState, useEffect } from "react";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import "./CSS/LoginSignup.css"; // Make sure to import your CSS file
@@ -44,10 +43,6 @@ function Login() {
           email: user,
           password: pass,
         })
-        // {
-        //   headers: {"Content-Type": "application/json"},
-        //   withCredentials: true
-        // }
       );
 
       const accessToken = response?.data?.accessToken;
@@ -108,9 +103,6 @@ function Login() {
                   required
                 />
               </Form.Group>
-              <p>
-                <Link to="/forgot-password">Forgot Password?</Link>
-              </p>
 
               <Button variant="primary" type="submit" className="mb-3">
                 Login
