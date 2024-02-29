@@ -4,18 +4,12 @@ import { Link } from "react-router-dom";
 import Image from "react-bootstrap/Image";
 import { useNavigate } from "react-router-dom";
 
-export const Item = (props) => {
+export const ItemNoClick = (props) => {
   const navigate = useNavigate();
-
-  const showProductDetail = () => {
-    navigate(`/product/${props.id}`, {
-      state: { product: props.product },
-    });
-  };
 
   console.log("Item", props.product);
   return (
-    <div className="item my-3" onClick={showProductDetail}>
+    <div className="item my-3">
       <Image
         // onClick={window.scrollTo(0, 0)}
         src={props.image}
@@ -32,4 +26,4 @@ export const Item = (props) => {
     </div>
   );
 };
-export default Item;
+export default ItemNoClick;

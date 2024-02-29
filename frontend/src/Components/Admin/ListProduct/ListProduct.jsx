@@ -6,10 +6,12 @@ import edit_icon from "../../Assets/edit_icon.png";
 import { useNavigate } from "react-router-dom";
 // import { ShopContext } from "../../../Context/ShopContext";
 import { fetchAPIProducts, DeleteAPIItem } from "../../Common/DokoAPILibrary";
+import useAxiosPrivate from "../../../Hooks/useAxiosPrivate";
 
 export const ListProduct = () => {
   console.log("ListProduct Called");
   // const { products, setProducts, DeleteItem } = useContext(ShopContext);
+  const axiosPrivate = useAxiosPrivate();
 
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(0);
@@ -45,7 +47,8 @@ export const ListProduct = () => {
   };
 
   const DeleteItem = (itemId) => {
-    DeleteAPIItem(itemId)
+    axiosPrivate
+      .delete(`admin/items/${itemId}`)
       .then((response) => {
         setProducts((products) =>
           products.filter((product) => product.id !== itemId)

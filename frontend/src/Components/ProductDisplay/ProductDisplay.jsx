@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import { Row, Col, Image, Button, Container } from "react-bootstrap";
 import "./ProductDisplay.css";
-import start_icon from "../Assets/star_icon.png";
-import start_dull_icon from "../Assets/star_dull_icon.png";
+
 import { ShopContext } from "../../Context/ShopContext";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
@@ -25,14 +24,14 @@ const ProductDisplay = (props) => {
         </Col>
         <Col className="productdisplay-right">
           <h1>{product.name}</h1>
-          <div className="productdisplay-right-stars">
+          {/* <div className="productdisplay-right-stars">
             <Image src={start_icon} alt="" />
             <Image src={start_icon} alt="" />
             <Image src={start_icon} alt="" />
             <Image src={start_icon} alt="" />
             <Image src={start_dull_icon} alt="" />
             <p>(122)</p>
-          </div>
+          </div> */}
           <div className="productdisplay-right-prices">
             <div className="productdisplay-right-price-old">
               ${product.price}
@@ -78,9 +77,9 @@ const ProductDisplay = (props) => {
         <Tab eventKey="description" title="Description">
           <p>{product.description}</p>
         </Tab>
-        <Tab eventKey="reviews" title="Reviews">
+        {/* <Tab eventKey="reviews" title="Reviews">
           Tab content for Profile
-        </Tab>
+        </Tab> */}
       </Tabs>
     </Container>
   );

@@ -28,9 +28,9 @@ const DescriptionBox = () => {
             processes are crucial for a positive customer experience.
           </p>
         </Tab>
-        <Tab eventKey="reviews" title="Reviews">
+        {/* <Tab eventKey="reviews" title="Reviews">
           Tab content for Profile
-        </Tab>
+        </Tab> */}
       </Tabs>
     </Container>
   );
