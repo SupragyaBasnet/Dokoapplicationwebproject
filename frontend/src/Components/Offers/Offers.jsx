@@ -16,9 +16,9 @@ export const Offers = () => {
                 <div className="hero-hand-icon">
                   <p>ONLY ON BEST SELLERS PRODUCTS</p>
                 </div>
-                <div>
+                {/* <div>
                   <button>Check Now</button>
-                </div>
+                </div> */}
               </div>
             </Col>
             <Col sm="12" md="5">

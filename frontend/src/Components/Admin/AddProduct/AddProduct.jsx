@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Form, Button, Col, Row, Container } from "react-bootstrap";
@@ -6,8 +5,11 @@ import upload_area from "../../Assets/upload_area.svg";
 import styles from "./AddProduct.module.css";
 import Alert from "react-bootstrap/Alert";
 
+import useAxiosPrivate from "../../../Hooks/useAxiosPrivate";
+
 export const AddProduct = () => {
   const location = useLocation();
+  const axios = useAxiosPrivate();
 
   console.log(location);
   const [productDetails, setProductDetails] = useState(
@@ -70,7 +72,7 @@ export const AddProduct = () => {
       console.log("updating item");
       axios
         .put(
-          "http://localhost:8080/items",
+          `/admin/items/${productDetails.id}`,
           {
             ...productDetails,
           },
@@ -87,7 +89,7 @@ export const AddProduct = () => {
     } else {
       axios
         .post(
-          "http://localhost:8080/items",
+          "/admin/items",
           {
             ...productDetails,
           },

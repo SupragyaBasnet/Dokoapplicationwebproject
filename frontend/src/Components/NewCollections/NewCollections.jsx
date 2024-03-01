@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import { Container, Row, Col } from "react-bootstrap"; // Import Bootstrap components
 import new_collection from "../Assets/new_collections";
-import Item from "../Item/Item";
+import ItemNoClick from "../Item/ItemNoClick";
 
 const NewCollections = () => {
   return (
@@ -11,7 +11,7 @@ const NewCollections = () => {
       <Row className="collections">
         {new_collection.map((item, i) => (
           <Col key={i} xs={12} sm={3} md={3} lg={3}>
-            <Item
+            <ItemNoClick
               id={item.id}
               name={item.name}
               image={item.image}

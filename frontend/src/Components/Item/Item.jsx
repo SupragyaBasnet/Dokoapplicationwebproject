@@ -22,6 +22,7 @@ export const Item = (props) => {
         alt=""
         fluid
         rounded
+        style={{ width: "100%", height: "auto" }} // Ensure consistent image dimensions
       ></Image>
       <p>{props.name}</p>
       <div className="item-prices">

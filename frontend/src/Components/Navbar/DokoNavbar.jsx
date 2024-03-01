@@ -9,13 +9,23 @@ import { Outlet } from "react-router-dom";
 import { ShopContext } from "../../Context/ShopContext";
 import "./DokoNavbar.css";
 import Footer from "../Footer/Footer";
+import useAuth from "../../Hooks/useAuth";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import Dropdown from "react-bootstrap/Dropdown";
+import { useNavigate } from "react-router-dom";
 
 const DokoNavbar = () => {
   const [menu, setMenu] = useState("shop");
   const { getTotalCartItems } = useContext(ShopContext);
-
   const totalCartItems = getTotalCartItems();
+  const { auth, setAuth } = useAuth();
+  const navigate = useNavigate();
 
+  const logout = () => {
+    setAuth(undefined);
+    navigate("/");
+  };
   return (
     <>
       <Navbar
@@ -54,9 +64,25 @@ const DokoNavbar = () => {
               </LinkContainer>
             </Nav>
             <Nav>
-              <LinkContainer to="/login">
-                <Nav.Link>Login</Nav.Link>
-              </LinkContainer>
+              {auth?.user ? (
+                <>
+                  <Dropdown align="end">
+                    <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                      {auth?.user}
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                  <Nav.Item style={{ marginLeft: "10px" }}>
+                    {/* Empty Nav.Item for spacing */}
+                  </Nav.Item>
+                </>
+              ) : (
+                <LinkContainer to="/login">
+                  <Nav.Link>Login</Nav.Link>
+                </LinkContainer>
+              )}
               <LinkContainer to="/cart">
                 <div className="cart-icon-container">
                   <div className="cart-badge-container">

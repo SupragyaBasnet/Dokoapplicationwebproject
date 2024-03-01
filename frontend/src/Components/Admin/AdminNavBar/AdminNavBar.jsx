@@ -3,13 +3,22 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
-import navProfile from "../../Assets/nav-profile.svg";
-import { Outlet } from "react-router-dom";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
+import Button from "react-bootstrap/Button";
 import logo from "../../Assets/logo.png";
+import useAuth from "../../../Hooks/useAuth";
 
 const AdminNavBar = () => {
   console.log("Admin Navbar Mounted");
+  const { auth, setAuth } = useAuth();
+  const navigate = useNavigate();
+
+  const logout = () => {
+    setAuth(undefined);
+    navigate("/");
+  };
+
   return (
     <>
       <Navbar bg="light" expand="lg">
@@ -39,15 +48,11 @@ const AdminNavBar = () => {
               </LinkContainer>
             </Nav>
             <Nav className="ms-auto">
-              <LinkContainer to="">
-                <Nav.Link href="#home">
-                  <Image
-                    src={navProfile}
-                    alt="Profile"
-                    className="nav_profile "
-                  />
-                </Nav.Link>
-              </LinkContainer>
+              <Nav.Item>
+                <Button variant="danger" onClick={logout}>
+                  Logout
+                </Button>
+              </Nav.Item>
             </Nav>
           </Navbar.Collapse>
         </Container>

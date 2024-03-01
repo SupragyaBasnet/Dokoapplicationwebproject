@@ -23,10 +23,10 @@ const Hero = () => {
                 <p>collections</p>
                 <p> for everyone</p>
               </div>
-              <div className="hero-latest-btn ">
+              {/* <div className="hero-latest-btn ">
                 <div>Latest Collection</div>
                 <img src={arrow_icon} alt="" />
-              </div>
+              </div> */}
             </Col>
             <Col sm="12" md="5" className="justify-content-xs-center">
               <Image src={hero_image} alt="" fluid />
