@@ -66,14 +66,14 @@ const ShopCategory = (props) => {
     <Container fluid className="shop-category">
       <img className="shopcategory-banner" src={props.banner} alt="" />
       <Row className="shopcategory-indexSort">
-        <Col>
+        {/* <Col>
           <p>
             <span>Showing 1-12</span> out of 36 products
           </p>
-        </Col>
-        <Col className="text-end">
+        </Col> */}
+        {/* <Col className="text-end">
           Sort by <img src={dropdown_icon} alt="" />
-        </Col>
+        </Col> */}
       </Row>
       <Row className="shopcategory-products">
         {products.map((item, i) => {
