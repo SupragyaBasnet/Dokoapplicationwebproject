@@ -82,10 +82,10 @@ function Login() {
             <h1 className="text-center">Login</h1>
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="formBasicUsername">
-                <Form.Label>Username</Form.Label>
+                <Form.Label>Email</Form.Label>
                 <Form.Control
-                  type="Username"
-                  placeholder="Enter username"
+                  type="Email"
+                  placeholder="Enter Email"
                   ref={userRef}
                   onChange={(e) => setUser(e.target.value)}
                   value={user}
